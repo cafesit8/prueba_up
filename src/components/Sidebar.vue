@@ -1,20 +1,29 @@
 <template>
-  <aside class="bg-gray-600 p-5 flex flex-col gap-5">
-    <picture class="w-full bg-white h-20 rounded-md grid place-content-center">
+  <div class="bg-gray-600 md:p-5 p-2 flex flex-col gap-5 h-full">
+    <picture class="w-full bg-white h-20 rounded-md grid place-content-center text-black">
       Logo
     </picture>
     <ul class="flex flex-col gap-1">
-      <RouterLink v-for="item in items" :key="item.label" exactActiveClass="text-gray-600 bg-white" :to="item.route"
-        class="p-2 rounded-lg font-semibold text-white">
+      <RouterLink @click="closeModal" v-for="item in items" :key="item.label" exactActiveClass="text-gray-600 bg-white" :to="item.route"
+        class="p-2 rounded-lg font-semibold">
         {{ item.label }}
       </RouterLink>
     </ul>
-  </aside>
+  </div>
 </template>
 
 <script>
+import { useStore } from '../store';
+
 export default {
   name: 'Sidebar',
+  setup () {
+    const { closeModal } = useStore()
+    
+    return {
+      closeModal
+    }
+  },
   data () {
     return {
       items: [
