@@ -54,7 +54,7 @@ export default {
 
 <template>
   <Header />
-  <div v-if="isFetching">Loading...</div>
+  <div class="w-full h-full grid place-content-center text-black" v-if="isFetching"><span class="loader"></span></div>
   <div v-else-if="isError">{{ error.message }}</div>
   <section v-else class="container grid" :class="countrySelected.data ? 'md:[grid-template-columns:1fr_450px] [grid-template-columns:1fr] gap-5' : 'grid-cols-1'">
     <div class="grid gap-4 md:[grid-template-columns:repeat(auto-fill,minmax(250px,1fr))] [grid-template-columns:repeat(auto-fill,minmax(150px,1fr))]">
@@ -70,3 +70,26 @@ export default {
   </Modal>
   <DialogInfo />
 </template>
+
+<style lang="css">
+/* Agregué este loading desde la página de css loaders (https://cssloaders.github.io/) */
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #4b5563;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+  } 
+</style>
