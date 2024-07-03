@@ -1,6 +1,13 @@
 <script>
+import { formatedPopulation } from '../services/formatedPopulation';
+
 export default {
   name: 'ModalContent',
+  setup () {
+    return {
+      formatedPopulation
+    }    
+  },
   props: {
     countrySelected: Object,
     handleClick: Function
@@ -12,8 +19,8 @@ export default {
   <div class="sticky top-0 left-0 right-0 bottom-0">
     <button @click="handleClick"
       class="absolute top-2 right-2 bg-sky-200 rounded-full size-8 grid place-content-center">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round"
         class="icon icon-tabler icons-tabler-outline icon-tabler-x text-black">
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <path d="M18 6l-12 12" />
@@ -36,8 +43,9 @@ export default {
         countrySelected.data?.capital[0] }}</span></p>
       <p class="text-sky-500 font-semibold text-xl">Language: <span class="text-gray-500 font-normal">{{
         countrySelected.data && Object.values(countrySelected.data?.languages).join(', ') }}</span></p>
-      <p class="text-sky-500 font-semibold text-xl">Population: <span class="text-gray-500 font-normal">{{
-        countrySelected.data?.population }} people</span></p>
+      <p class="text-sky-500 font-semibold text-xl">Population: <span class="text-gray-500 font-normal">
+          {{ formatedPopulation(countrySelected.data?.population) }} people
+        </span></p>
       <p class="text-sky-500 font-semibold text-xl">Status: <span class="text-gray-500 font-normal">{{
         countrySelected.data?.status }}</span></p>
       <p class="text-sky-500 font-semibold text-xl">Start of week: <span class="text-gray-500 font-normal">{{
